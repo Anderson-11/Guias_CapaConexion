@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace CapaConexion
 {
@@ -15,6 +16,15 @@ namespace CapaConexion
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void btnCargar_Click(object sender, EventArgs e)
+        {
+            SqlConnection conexion = new SqlConnection("Data Source=DESKTOP-NEQQDIJ\\SQLEXPRESS;Initial Catalog=Northwind;Integrated Security=True;");
+            conexion.Open();
+            MessageBox.Show("'Conectado'");
+            conexion.Close();
+            MessageBox.Show("Conexion finalizada, 'Vuelva Pronto'");
         }
     }
 }
