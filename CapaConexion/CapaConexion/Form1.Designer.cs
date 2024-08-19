@@ -36,7 +36,7 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 12);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 102);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(776, 311);
             this.dataGridView1.TabIndex = 0;
@@ -44,7 +44,7 @@
             // btnCargar
             // 
             this.btnCargar.BackColor = System.Drawing.Color.LightGreen;
-            this.btnCargar.Location = new System.Drawing.Point(141, 364);
+            this.btnCargar.Location = new System.Drawing.Point(365, 35);
             this.btnCargar.Name = "btnCargar";
             this.btnCargar.Size = new System.Drawing.Size(81, 36);
             this.btnCargar.TabIndex = 1;
