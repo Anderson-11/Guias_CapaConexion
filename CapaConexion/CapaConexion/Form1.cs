@@ -70,8 +70,14 @@ namespace CapaConexion
 
         private void FiltroBox_TextChanged(object sender, EventArgs e)
         {
-            var filtro = Customers.FindAll(X => X.CompanyName.StartsWith(FiltroBox.Text.ToUpper()));
+            var filtro = Customers.FindAll(X => X.CompanyName.StartsWith(FiltroBox.Text));
             dataGrid.DataSource = filtro;
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            string cadenaConexion = DatosLayer.DataBase.ConnectionString;
+            
         }
     }
 }
