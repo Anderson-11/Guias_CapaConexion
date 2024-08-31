@@ -31,6 +31,7 @@ namespace CapaConexion
         private void FiltroBox_TextChanged(object sender, EventArgs e)
         {
             var ObtenerTodo = customerRepository.ObtenerTodos();
+
             var filtro = ObtenerTodo.FindAll(X => X.CompanyName.StartsWith(FiltroBox.Text));
             dataGrid.DataSource = filtro;
         }
@@ -47,6 +48,7 @@ namespace CapaConexion
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             var cliente = customerRepository.ObtenerPorID(txtBuscar.Text);
+            
             if (cliente != null)
             {
                 txtBuscar.Text = cliente.CompanyName;

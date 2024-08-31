@@ -66,7 +66,8 @@ namespace DatosLayer
                 {
                     var reader = comando.ExecuteReader();
                     customers customers = null;
-                    //validadmos 
+
+                    // validadmos 
                     if (reader.Read())
                     {
                         customers = LeerDelDataReader(reader);
@@ -92,7 +93,6 @@ namespace DatosLayer
             customers.Fax = reader["Fax"] == DBNull.Value ? "" : (String)reader["Fax"];
             return customers;
         }
-
     }
 }
 
