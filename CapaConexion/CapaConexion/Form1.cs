@@ -30,8 +30,9 @@ namespace CapaConexion
 
         private void FiltroBox_TextChanged(object sender, EventArgs e)
         {
-            //var filtro = Customers.FindAll(X => X.CompanyName.StartsWith(FiltroBox.Text));
-            //dataGrid.DataSource = filtro;
+            var ObtenerTodo = customerRepository.ObtenerTodos();
+            var filtro = ObtenerTodo.FindAll(X => X.CompanyName.StartsWith(FiltroBox.Text));
+            dataGrid.DataSource = filtro;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -41,6 +42,16 @@ namespace CapaConexion
             //string cadenaConexion = DatosLayer.DataBase.ConnectionString;
 
             //var conectarDB = DatosLayer.DataBase.GetSqlConnection();
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            var cliente = customerRepository.ObtenerPorID(txtBuscar.Text);
+            if (cliente != null)
+            {
+                txtBuscar.Text = cliente.CompanyName;
+                MessageBox.Show(cliente.CompanyName);
+            }
         }
     }
 }
