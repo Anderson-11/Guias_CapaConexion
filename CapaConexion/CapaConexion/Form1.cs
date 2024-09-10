@@ -53,7 +53,7 @@ namespace CapaConexion
             {
                 txtBuscar.Text = cliente.CompanyName;
                 if(MessageBox.Show($"Quieres editar a: '{cliente.CompanyName}'", "Editar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes){
-                    Añadir persona = new Añadir();
+                    Añadir persona = new Añadir(cliente.CustomerID);
                     persona.ShowDialog();
                 }
             }
@@ -61,7 +61,7 @@ namespace CapaConexion
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-            Añadir persona = new Añadir();
+            Añadir persona = new Añadir(id: "");
             persona.ShowDialog();
         }
     }

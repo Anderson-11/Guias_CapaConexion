@@ -42,6 +42,7 @@ namespace DatosLayer
                 }
             }
         }
+
         public customers ObtenerPorID(string id)
         {
 
@@ -130,6 +131,40 @@ namespace DatosLayer
                     return insertados;
                 }
             }
+        }
+
+        public int ActualizarCliente(customers customer, string id_)
+        {
+            using (var conexion = DataBase.GetSqlConnection())
+            {
+                String ActualizarCustomerPorID = "";
+                ActualizarCustomerPorID = ActualizarCustomerPorID + "UPDATE [dbo].[Customers] " + "\n";
+                ActualizarCustomerPorID = ActualizarCustomerPorID + "   SET [CustomerID] = @CustomerID " + "\n";
+                ActualizarCustomerPorID = ActualizarCustomerPorID + "      ,[CompanyName] = @CompanyName " + "\n";
+                ActualizarCustomerPorID = ActualizarCustomerPorID + "      ,[ContactName] = @ContactName " + "\n";
+                ActualizarCustomerPorID = ActualizarCustomerPorID + "      ,[ContactTitle] = @ContactTitle " + "\n";
+                ActualizarCustomerPorID = ActualizarCustomerPorID + "      ,[Address] = @Address " + "\n";
+                ActualizarCustomerPorID = ActualizarCustomerPorID + "      ,[City] = @City " + "\n";
+                ActualizarCustomerPorID = ActualizarCustomerPorID + $" WHERE CustomerID= '{id_}'";
+                using (var comando = new SqlCommand(ActualizarCustomerPorID, conexion))
+                {
+
+                    int actualizados = parametrosCliente(customer, comando);
+                    return actualizados;
+                }
+            }
+        }
+
+        public int parametrosCliente(customers customer, SqlCommand comando)
+        {
+            comando.Parameters.AddWithValue("CustomerID", customer.CustomerID);
+            comando.Parameters.AddWithValue("CompanyName", customer.CompanyName);
+            comando.Parameters.AddWithValue("ContactName", customer.ContactName);
+            comando.Parameters.AddWithValue("ContactTitle", customer.ContactTitle);
+            comando.Parameters.AddWithValue("Address", customer.Address);
+            comando.Parameters.AddWithValue("City", customer.City);
+            var insertados = comando.ExecuteNonQuery();
+            return insertados;
         }
     }
 }
