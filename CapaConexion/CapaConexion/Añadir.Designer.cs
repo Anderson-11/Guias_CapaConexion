@@ -213,6 +213,7 @@
             this.Controls.Add(this.btnInsertarDatos);
             this.Controls.Add(this.addPerson);
             this.Name = "Añadir";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Añadir";
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -64,5 +64,34 @@ namespace CapaConexion
             Añadir persona = new Añadir(id: "");
             persona.ShowDialog();
         }
+
+        private void CargarDatos()
+        {
+            var ObtenerTodo = customerRepository.ObtenerTodos();
+            dataGrid.DataSource = ObtenerTodo;
+        }
+
+        private void dataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGrid.Columns[e.ColumnIndex].Name.Equals("Eliminar"))
+            {
+                var resultado = MessageBox.Show("¿Deseas Eliminar el personal?", "Eliminar Personal", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (resultado == DialogResult.Yes)
+                {
+                    string id = dataGrid.Rows[e.RowIndex].Cells["CustomerID"].Value.ToString();
+                    int eliminadas = customerRepository.EliminarCliente(id);
+
+                    if (eliminadas > 0)
+                    {
+                        MessageBox.Show("Personal Eliminado con Éxito", "Eliminar Personal", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        CargarDatos();
+                    }
+                    else
+                    {
+                        MessageBox.Show("El personal no fue eliminado", "Eliminar Personal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
     }
 }

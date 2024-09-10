@@ -18,6 +18,7 @@ namespace CapaConexion
     {
         CustomerRepository cliente = new CustomerRepository();
         string id_ = "";
+        
         public Añadir(string id)
         {
             InitializeComponent();
@@ -36,6 +37,7 @@ namespace CapaConexion
                 btnModificar.Hide();
             }
         }
+
         public void CargarDatos()
         {
             var perso = cliente.ObtenerPorID(id_);
@@ -47,6 +49,7 @@ namespace CapaConexion
             tboxAddress.Text = perso.Address;
             tboxCity.Text = perso.City;
         }
+
         private void btnInsertarDatos_Click(object sender, EventArgs e)
         {
             var nuevoCliente = new customers {
@@ -57,8 +60,10 @@ namespace CapaConexion
                 Address = tboxAddress.Text,
                 City = tboxCity.Text
             };
+            
             ValidarDatos();
             var resultado = 0;
+
             if (retornar == true)
             {
                 var repository = new CustomerRepository();
@@ -91,7 +96,7 @@ namespace CapaConexion
                 Address = tboxAddress.Text,
                 City = tboxCity.Text
             };
-            return nuevoCliente; // Retorna el nuevo objeto Person
+            return nuevoCliente; 
         }
 
         bool retornar = false;
@@ -110,21 +115,16 @@ namespace CapaConexion
             ValidarDatos();
             if (retornar == true)
             {
-                // Obtiene los datos actualizados del cliente desde los campos de texto
                 var update = ObtenerNuevoCliente();
-                // Llama al método para actualizar el personal y obtiene el resultado
                 int actulizar = cliente.ActualizarCliente(update, id_);
 
-                // Verifica si la actualización fue exitosa
                 if (actulizar > 0)
                 {
-                    // Muestra un mensaje de éxito y cierra el formulario
                     MessageBox.Show($"Se ha actualizado de forma EXITOSA", "Actualización", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
                 }
                 else
                 {
-                    // Muestra un mensaje de error si la actualización falló
                     MessageBox.Show($"ERROR", "Actualización", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
